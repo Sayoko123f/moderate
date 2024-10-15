@@ -1,0 +1,17 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PostList from "@/components/PostList.astro";
+---
+
+<Layout>
+  <div class="grid grid-cols-1 md:grid-cols-2">
+    <main class="mx-auto max-w-3xl bg-yellow-200">
+      <PostList></PostList>
+    </main>
+    <!-- Desktop Only -->
+    <aside class="hidden max-w-sm bg-green-200 md:flex">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, ullam! Sunt
+      beatae id quaerat fugit libero!
+    </aside>
+  </div>
+</Layout>

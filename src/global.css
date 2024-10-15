@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #242424;
+  --secondary: #6b6b6b;
+}
+
+html {
+  font-family: system-ui, sans-serif;
+  background: #eeeeee;
+}
+code {
+  font-family:
+    Menlo,
+    Monaco,
+    Lucida Console,
+    Liberation Mono,
+    DejaVu Sans Mono,
+    Bitstream Vera Sans Mono,
+    Courier New,
+    monospace;
+}
+
+.markdown {
+  font-size: 20px;
+  color: var(--primary);
+}
+
+.markdown p {
+  letter-spacing: -0.003em;
+  line-height: 32px;
+  margin-top: 2.14em;
+  margin-bottom: -0.46em;
+  /* font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif; */
+  font-style: normal;
+  word-break: break-word;
+}
+
+.markdown blockquote {
+  color: var(--secondary);
+  font-size: 28px;
+}
+
+.markdown ul {
+  list-style: disc;
+  padding-left: 20px;
+  margin-top: 2.14em;
+}
+
+.markdown li {
+  margin-top: 1.14em;
+  margin-bottom: -0.46em;
+  letter-spacing: -0.003em;
+  line-height: 32px;
+}
+
+.markdown h1 {
+  letter-spacing: -0.016em;
+  line-height: 30px;
+  margin-top: 1.25em;
+  font-size: 24px;
+  margin-bottom: -0.28em;
+  font-weight: 600;
+}
+
+.markdown h2 {
+  letter-spacing: 0;
+  line-height: 24px;
+  margin-top: 1.72em;
+  font-size: 20px;
+  margin-bottom: -0.31em;
+  font-weight: 600;
+}
