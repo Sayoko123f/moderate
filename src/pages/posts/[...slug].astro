@@ -12,6 +12,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+const tags = entry.data.tags;
 ---
 
 <Layout>
@@ -25,6 +26,19 @@ const { Content } = await entry.render();
     <div class="markdown max-w-4xl">
       <Content />
     </div>
+    {
+      tags.length && (
+        <div class="">
+          {tags.map((tag) => (
+            <a href="#">
+              <span class="px-4 py-2">{tag}</span>
+            </a>
+          ))}
+        </div>
+      )
+    }
+    <div class="pb-[140px]"></div>
   </article>
   <script src="@/scripts/pswp.ts"></script>
+  <script src="@/scripts/youtube-loader.ts"></script>
 </Layout>

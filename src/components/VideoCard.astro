@@ -1,0 +1,18 @@
+---
+interface Props {
+  local?: string;
+  youtube?: string;
+  description?: string;
+}
+
+const { local, youtube } = Astro.props;
+
+if (!local && !youtube) {
+  throw new Error("VideoCard require local or youtube props.");
+}
+---
+
+<div class="mt-14">
+  <div data-youtube="6TWCEJMP8bM"></div>
+  <div class="text-sm mt-2.5 text-center text-secondary">Johnson 分享的 Steam 遊戲發行知識懶人包</div>
+</div>
