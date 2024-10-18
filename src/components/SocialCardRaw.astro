@@ -10,7 +10,7 @@ const { href, title, description, cover } = Astro.props;
 ---
 
 <div class="social-card-container">
-  <a href={href} rel="noopener follow" target="_blank">
+  <a href={href} class="!no-underline" rel="noopener follow" target="_blank">
     <div class="flex items-center">
       <div class="grow px-5 py-4">
         <div class="line-clamp-2 text-base font-bold">{title}</div>

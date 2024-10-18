@@ -5,12 +5,13 @@
 :root {
   --primary: #242424;
   --secondary: #6b6b6b;
+  --primary-bg: #ffffff;
 }
 
 html {
   color: var(--primary);
   font-family: system-ui, sans-serif;
-  background: #ffffff;
+  background: var(--primary-bg);
 }
 
 code {
@@ -85,6 +86,10 @@ code {
   margin-top: var(--space-5);
 }
 
+.markdown a {
+  text-decoration: underline;
+}
+
 .markdown blockquote {
   color: var(--secondary);
   font-size: 28px;
@@ -146,11 +151,8 @@ code {
   margin-bottom: 10px;
   padding-top: 24px;
   padding-bottom: 10px;
-
   border: 0;
   color: var(--primary);
-  /* background: linear-gradient(currentColor, currentColor) no-repeat center; */
-  /* background-size: 100% 1px; */
 }
 
 .markdown hr::before {
