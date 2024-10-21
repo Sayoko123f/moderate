@@ -6,6 +6,8 @@ export default {
       colors: {
         primary: "var(--primary)",
         secondary: "var(--secondary)",
+        neutral: "var(--neutral)",
+        "primary-bg": "var(--primary-bg)",
       },
     },
   },

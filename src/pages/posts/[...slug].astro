@@ -23,15 +23,17 @@ const tags = entry.data.tags;
         <h2 class="post-subtitle">{entry.data.description}</h2>
       )
     }
-    <div class="markdown max-w-4xl">
+    <div class="markdown mb-[68px] max-w-4xl">
       <Content />
     </div>
     {
       tags.length && (
-        <div class="">
+        <div class="flex flex-wrap gap-x-2 gap-y-5">
           {tags.map((tag) => (
             <a href="#">
-              <span class="px-4 py-2">{tag}</span>
+              <span class="bg-neutral rounded-3xl px-4 py-2 text-sm">
+                {tag}
+              </span>
             </a>
           ))}
         </div>
