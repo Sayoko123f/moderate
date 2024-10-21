@@ -1,13 +1,42 @@
 ---
-const icons = await Astro.glob('@/assets/glob-icons/*.astro');
+import { themeConfig } from "@/theme-config";
+import LinkDefaultIcon from "@/assets/icons/UilLink.astro";
+import { parseFilename } from "ufo";
+const icons = await Astro.glob("@/assets/glob-icons/*.astro");
+
+const socialLinks = themeConfig.socialLinks.map((link) => {
+  const iconComponent = icons.find((e) => {
+    return parseFilename(e.file, { strict: true }) === link.icon;
+  });
+  return { ...link, IconComponent: iconComponent?.default };
+});
 ---
 
-<div
+<header
   class="h-appbar bg-primary-bg border-neutral fixed left-0 right-0 top-0 z-30 hidden items-center justify-between border-b px-6 transition-transform md:flex"
   style="transform: translateY(var(--appbar-transform-y));"
 >
-  <div class="">
+  <nav class="">
     <a href="/">Home</a>
-  </div>
-  <div class="">123</div>
-</div>
+  </nav>
+  <nav class="">
+    <div class="flex gap-x-4">
+      {
+        socialLinks.map((link) => (
+          <a class="flex flex-shrink-0 gap-x-2 hover:underline" href={link.url}>
+            {link.icon && (
+              <span class="size-6" style="font-size: 1.5rem">
+                {link.IconComponent ? (
+                  <link.IconComponent />
+                ) : (
+                  <LinkDefaultIcon />
+                )}
+              </span>
+            )}
+            {link.text && link.text}
+          </a>
+        ))
+      }
+    </div>
+  </nav>
+</header>
