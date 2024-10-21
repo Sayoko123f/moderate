@@ -1,8 +1,13 @@
 ---
-
+const icons = await Astro.glob('@/assets/glob-icons/*.astro');
 ---
 
-<div class="hidden h-[57px] md:flex">
-  TheDesktopHeader
-  <a href="/">Home</a>
+<div
+  class="h-appbar bg-primary-bg border-neutral fixed left-0 right-0 top-0 z-30 hidden items-center justify-between border-b px-6 transition-transform md:flex"
+  style="transform: translateY(var(--appbar-transform-y));"
+>
+  <div class="">
+    <a href="/">Home</a>
+  </div>
+  <div class="">123</div>
 </div>

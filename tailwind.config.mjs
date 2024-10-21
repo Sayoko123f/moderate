@@ -9,6 +9,9 @@ export default {
         neutral: "var(--neutral)",
         "primary-bg": "var(--primary-bg)",
       },
+      height: {
+        appbar: "var(--appbar-height)",
+      },
     },
   },
   plugins: [],
