@@ -5,7 +5,7 @@ const throttleOnScroll = throttle(onScroll, 40);
 
 window.addEventListener(
   "scroll",
-  (event) => {
+  () => {
     throttleOnScroll();
   },
   { passive: true },
