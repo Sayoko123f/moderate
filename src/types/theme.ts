@@ -1,5 +1,6 @@
 import type { RequireExactlyOne } from "type-fest";
 import type { HTMLAttributes } from "astro/types";
+import type { ImageMetadata } from "astro";
 
 interface _SocialLink {
   url: string;
@@ -13,7 +14,7 @@ export interface ThemeConfig {
   siteTitle: string;
   profile: {
     name: string;
-    avatar?: string;
+    avatar?: ImageMetadata;
     bio?: string;
   };
   socialLinks: SocialLink[];

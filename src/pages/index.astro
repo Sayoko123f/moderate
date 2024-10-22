@@ -4,11 +4,39 @@ import PostList from "@/components/PostList.astro";
 import { themeConfig } from "@/theme-config";
 
 const { profile } = themeConfig;
+
+const isHome = true;
+const isAbout = false;
 ---
 
 <Layout>
   <div class="mx-auto flex max-w-[1336px] justify-evenly">
-    <main class="max-w-[728px] bg-yellow-200">
+    <main class="max-w-[728px]">
+      <div
+        class="h-[150px]"
+        style="background-image: linear-gradient(to bottom, #4a96b6ff, transparent);"
+      >
+      </div>
+      <div class="mx-6 mb-10 mt-[52px]">
+        <div class="line-clamp-1 max-h-[52px] text-[42px]">{profile.name}</div>
+      </div>
+      <nav
+        class="mx-6 mb-12 flex gap-8 text-sm"
+        style="box-shadow: inset 0 -1px 0 var(--neutral);"
+      >
+        <a
+          href="/"
+          class={`pb-4 ${isHome ? "text-primary border-primary" : "text-secondary border-neutral"} hover:text-primary border-b`}
+        >
+          Home
+        </a>
+        <a
+          href="#"
+          class={`pb-4 ${isAbout ? "text-primary border-primary" : "text-secondary border-neutral"} hover:text-primary border-b`}
+        >
+          About
+        </a>
+      </nav>
       <PostList />
     </main>
     <!-- Desktop Only -->
@@ -19,7 +47,7 @@ const { profile } = themeConfig;
             profile.avatar && (
               <img
                 class="max-h-full rounded-full object-contain"
-                src={profile.avatar}
+                src={profile.avatar.src}
                 alt={profile.name}
               />
             )
