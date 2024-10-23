@@ -9,11 +9,10 @@ import TheMobileHeader from "@/components/TheMobileHeader.astro";
 <html lang={themeConfig.lang}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{themeConfig.siteTitle}</title>
+    <slot name="html-head" />
   </head>
   <body>
     <TheDesktopHeader />

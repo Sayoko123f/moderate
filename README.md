@@ -19,16 +19,19 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
 
 ## TODO
 
-- [ ] 關於 About 頁
-- [ ] 標籤頁
+- [x] 關於 About 頁
+- [x] 標籤頁
 - [ ] 頁腳
 - [ ] 文章頁腳相關文章
 - [ ] 暗黑模式支持
-- [ ] Document Title 設定
+- [x] Document Title 設定
+- [ ] SEO OpenGraph Tags 設定
+- [ ] 結構化資料支持
 - [ ] 站內搜尋
 - [ ] 可選的 giscus 評論功能
 - [ ] Markdown 自訂短語法組件
 - [ ] RSS 支持
+- [ ] SiteMap 支持
 - [ ] Grid 風格主頁
 - [ ] 分頁器
 - [ ] 撰寫文件

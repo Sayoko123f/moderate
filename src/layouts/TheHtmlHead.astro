@@ -1,0 +1,20 @@
+---
+import { themeConfig } from "@/theme-config";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const props = Astro.props;
+
+const documentTitle = props.title
+  ? `${props.title}${themeConfig.siteTitleDelimiter ?? " | "}${themeConfig.siteTitle}`
+  : themeConfig.siteTitle;
+---
+
+<title>{documentTitle}</title>
+<meta
+  name="description"
+  content={props.description ?? themeConfig.siteDescription}
+/>
