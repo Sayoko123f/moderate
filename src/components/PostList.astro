@@ -1,8 +1,12 @@
 ---
 import PostCard from "./PostCard.astro";
-import { getPosts } from "@/utils/content";
+import { getPosts, type PostEntry } from "@/utils/content";
 
-const blogEntries = await getPosts();
+interface Props {
+  posts?: PostEntry[];
+}
+
+const { posts = await getPosts() } = Astro.props;
 ---
 
-{blogEntries.map((post) => <PostCard post={post} />)}
+{posts.map((post) => <PostCard post={post} />)}

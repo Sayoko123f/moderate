@@ -8,3 +8,7 @@ function toURL(...input: string[]): string {
 export function postURL(post: PostEntry): string {
   return toURL("posts", post.slug);
 }
+
+export function tagURL(tag: string): string {
+  return toURL("tag", tag);
+}

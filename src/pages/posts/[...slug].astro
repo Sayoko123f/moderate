@@ -2,6 +2,7 @@
 import "@/styles/markdown.css";
 import Layout from "@/layouts/Layout.astro";
 import { getPosts } from "@/utils/content";
+import { tagURL } from "@/utils/url";
 
 export async function getStaticPaths() {
   const postEntries = await getPosts();
@@ -31,8 +32,8 @@ const tags = entry.data.tags;
       tags.length && (
         <div class="flex flex-wrap gap-x-2 gap-y-5">
           {tags.map((tag) => (
-            <a href="#">
-              <span class="bg-neutral rounded-3xl px-4 py-2 text-sm">
+            <a href={tagURL(tag)}>
+              <span class="rounded-3xl bg-neutral px-4 py-2 text-sm">
                 {tag}
               </span>
             </a>

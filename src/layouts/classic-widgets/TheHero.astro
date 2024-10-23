@@ -1,7 +1,13 @@
 ---
 import { themeConfig } from "@/theme-config";
 
+interface Props {
+  heading?: string;
+}
+
 const { profile } = themeConfig;
+
+const { heading = profile.name } = Astro.props;
 ---
 
 <div
@@ -10,5 +16,5 @@ const { profile } = themeConfig;
 >
 </div>
 <div class="mx-6 mb-10 mt-[52px]">
-  <div class="line-clamp-1 max-h-[52px] text-[42px]">{profile.name}</div>
+  <h2 class="line-clamp-1 max-h-[52px] text-[42px]">{heading}</h2>
 </div>
