@@ -1,0 +1,26 @@
+---
+import { themeConfig } from "@/theme-config";
+
+const { profile } = themeConfig;
+---
+
+<Fragment>
+  <div class="pt-10">
+    <div class="h-[88px]">
+      {
+        profile.avatar && (
+          <img
+            class="max-h-full rounded-full object-contain"
+            src={profile.avatar.src}
+            alt={profile.name}
+          />
+        )
+      }
+    </div>
+  </div>
+  <div class="mt-2.5">
+    <h2 class="break-all pr-2">{profile.name}</h2>
+  </div>
+  <div class="mt-2 text-secondary">1.8K Followers</div>
+  <p class="mt-2 text-sm text-secondary">{profile.bio}</p>
+</Fragment>

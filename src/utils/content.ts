@@ -1,4 +1,4 @@
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
 export async function getPosts() {
@@ -11,6 +11,12 @@ export async function getPosts() {
   );
 
   return postEntries;
+}
+
+export async function getAbout() {
+  const about = await getEntry("about", "index");
+
+  return about;
 }
 
 export type PostEntry = CollectionEntry<"posts">;

@@ -1,0 +1,26 @@
+---
+interface Props {
+  isHome: boolean;
+  isAbout: boolean;
+}
+
+const { isAbout, isHome } = Astro.props;
+---
+
+<nav
+  class="mx-6 mb-12 flex gap-8 text-sm"
+  style="box-shadow: inset 0 -1px 0 var(--neutral);"
+>
+  <a
+    href="/"
+    class={`pb-4 ${isHome ? "text-primary border-primary" : "text-secondary border-neutral"} hover:text-primary border-b`}
+  >
+    Home
+  </a>
+  <a
+    href="/about"
+    class={`pb-4 ${isAbout ? "text-primary border-primary" : "text-secondary border-neutral"} hover:text-primary border-b`}
+  >
+    About
+  </a>
+</nav>

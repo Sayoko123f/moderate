@@ -16,3 +16,17 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## TODO
+
+- [ ] 關於 About 頁
+- [ ] 標籤頁
+- [ ] 頁腳
+- [ ] 文章頁腳相關文章
+- [ ] 暗黑模式支持
+- [ ] 站內搜尋
+- [ ] 可選的 giscus 評論功能
+- [ ] Markdown 自訂短語法組件
+- [ ] RSS 支持
+- [ ] Grid 風格主頁
+- [ ] 撰寫文件
