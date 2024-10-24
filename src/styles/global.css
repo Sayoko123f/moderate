@@ -6,6 +6,8 @@
   --primary: #242424;
   --secondary: #6b6b6b;
   --neutral: #f2f2f2;
+  --footer-bg: #f9f9f9;
+  --footer-neutral: #e5e5e5;
   --primary-bg: #ffffff;
   --appbar-height: 57px;
   --appbar-transform-y: 0;
@@ -60,7 +62,7 @@ code {
 }
 
 .home-profile-container {
-  @apply border-neutral hidden max-w-[368px] border-l pr-6 md:block;
+  @apply hidden max-w-[368px] border-l border-neutral pr-6 md:block;
   padding-left: clamp(24px, -1056px + 100vw, 40px);
   min-height: calc(100vh - var(--appbar-height));
 }

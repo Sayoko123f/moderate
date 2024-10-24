@@ -8,6 +8,8 @@ export default {
         secondary: "var(--secondary)",
         neutral: "var(--neutral)",
         "primary-bg": "var(--primary-bg)",
+        "footer-bg": "var(--footer-bg)",
+        "footer-neutral": "var(--footer-neutral)",
       },
       height: {
         appbar: "var(--appbar-height)",

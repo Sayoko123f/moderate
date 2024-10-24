@@ -32,6 +32,7 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
 - [ ] Markdown 自訂短語法組件
 - [ ] RSS 支持
 - [ ] SiteMap 支持
+- [ ] 研究圖片動態導入
 - [ ] Grid 風格主頁
 - [ ] 分頁器
 - [ ] 撰寫文件
