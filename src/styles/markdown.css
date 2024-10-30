@@ -114,3 +114,13 @@
     1.5em 0,
     -1.5em 0;
 }
+
+:root.dark .markdown p,
+:root.dark .markdown li {
+  color: var(--secondary);
+}
+
+:root.dark .markdown blockquote p,
+:root.dark .markdown strong {
+  color: var(--primary);
+}

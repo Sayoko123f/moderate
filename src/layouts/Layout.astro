@@ -13,6 +13,23 @@ import TheMobileHeader from "@/components/TheMobileHeader.astro";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <slot name="html-head" />
+    <script is:inline>
+      function initDarkMode() {
+        const storageDarkValue = "dark";
+        const storageKey = "theme";
+        const systemMode = window.matchMedia("(prefers-color-scheme: dark)")
+          .matches
+          ? "dark"
+          : "light";
+
+        const mode = localStorage.getItem(storageKey) || systemMode;
+        document.documentElement.classList.toggle(
+          "dark",
+          mode === storageDarkValue
+        );
+      }
+      initDarkMode();
+    </script>
   </head>
   <body>
     <TheDesktopHeader />
