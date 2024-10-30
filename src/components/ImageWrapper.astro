@@ -1,8 +1,6 @@
 ---
-import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
-import path from "node:path";
-import { joinBaseURL } from "@/utils/url";
+import { loadImage } from "@/utils/load-image";
 
 interface Props {
   alt?: string;
@@ -12,37 +10,12 @@ interface Props {
 
 const { src, alt = "", basePath = "/" } = Astro.props;
 
-const isLocal = !(
-  src.startsWith("/") ||
-  src.startsWith("http") ||
-  src.startsWith("https") ||
-  src.startsWith("data:")
-);
-const isPublic = src.startsWith("/");
-let localImage: ImageMetadata | undefined;
-
-async function calcLocalImage(): Promise<ImageMetadata> {
-  const allImageFiles = import.meta.glob(
-    "../**/*.{jpeg,webp,jpg,png,svg,gif,avif}",
-    { import: "default" }
-  );
-  const srcDir = "..";
-  const imagePath = path.join(srcDir, path.dirname(basePath), src);
-  const importPath = path.normalize(imagePath).replaceAll("\\", "/");
-  const imgModule = await allImageFiles[importPath]();
-  if (!imgModule) {
-    throw new Error(
-      `[ERROR] Not found image file, originalInput=${src}, importPath=${importPath}, basePath=${basePath}.`
-    );
-  }
-  return imgModule as ImageMetadata;
-}
-
-if (isLocal) {
-  localImage = await calcLocalImage();
-}
+const { isLocal, localImage, urlIfNotLocal } = await loadImage({
+  src,
+  basePath,
+});
 ---
 
 {localImage && <Image src={localImage} alt={alt} />}
 
-{!isLocal && <img src={isPublic ? joinBaseURL(src) : src} />}
+{!isLocal && <img src={urlIfNotLocal} />}
