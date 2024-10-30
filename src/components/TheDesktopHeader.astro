@@ -1,6 +1,9 @@
 ---
 import { themeConfig } from "@/theme-config";
 import LinkDefaultIcon from "@/assets/icons/UilLink.astro";
+import DarkModeIcon from "@/assets/icons/DarkMode.astro";
+import LightModeIcon from "@/assets/icons/LightMode.astro";
+
 import { parseFilename } from "ufo";
 const icons = await Astro.glob("@/assets/glob-icons/*.astro");
 
@@ -13,30 +16,38 @@ const socialLinks = themeConfig.socialLinks.map((link) => {
 ---
 
 <header
-  class="h-appbar bg-primary-bg border-neutral fixed left-0 right-0 top-0 z-30 hidden items-center justify-between border-b px-6 transition-transform md:flex"
+  class="fixed left-0 right-0 top-0 z-30 hidden h-appbar items-center justify-between border-b border-neutral bg-primary-bg px-6 transition-transform md:flex"
   style="transform: translateY(var(--appbar-transform-y));"
 >
   <nav class="">
     <a href="/">Home</a>
   </nav>
-  <nav class="">
+  <nav class="flex">
     <div class="flex gap-x-4">
       {
         socialLinks.map((link) => (
           <a class="flex flex-shrink-0 gap-x-2 hover:underline" href={link.url}>
             {link.icon && (
-              <span class="size-6" style="font-size: 1.5rem">
+              <div class="size-6" style="font-size: 1.5rem">
                 {link.IconComponent ? (
                   <link.IconComponent />
                 ) : (
                   <LinkDefaultIcon />
                 )}
-              </span>
+              </div>
             )}
             {link.text && link.text}
           </a>
         ))
       }
     </div>
+    <div
+      class="mx-4 size-6 cursor-pointer text-secondary hover:text-primary"
+      style="font-size: 1.5rem;"
+    >
+      <DarkModeIcon class:list={"hidden"} id="dark-mode-icon" />
+        <LightModeIcon class:list={"hidden"} id="light-mode-icon" />
+    </div>
+    <script src="@/utils/dark-mode.ts"></script>
   </nav>
 </header>
