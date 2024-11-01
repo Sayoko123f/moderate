@@ -25,8 +25,8 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
 - [ ] 文章頁腳相關文章
 - [ ] 暗黑模式支持
 - [x] Document Title 設定
-- [ ] SEO OpenGraph Tags 設定
-- [ ] 結構化資料支持
+- [x] SEO OpenGraph Tags 設定
+- [x] 結構化資料支持
 - [ ] 站內搜尋
 - [ ] 可選的 giscus 評論功能
 - [ ] Markdown 自訂短語法組件

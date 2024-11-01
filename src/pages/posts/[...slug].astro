@@ -6,6 +6,7 @@ import { tagURL, calcPostFilePath } from "@/utils/url";
 import TheHtmlHead from "@/layouts/TheHtmlHead.astro";
 import { themeConfig } from "@/theme-config";
 import { loadImage } from "@/utils/load-image";
+import { undefined } from "astro:schema";
 
 export async function getStaticPaths() {
   const postEntries = await getPosts();
@@ -35,6 +36,7 @@ async function structuredData() {
     },
     datePublished: entry.data.published,
     inLanguage: themeConfig.lang?.replace("_", "-"),
+    image: void 0 as URL | string | undefined,
   };
   if (entry.data.cover && Astro.site) {
     const { localImage, urlIfNotLocal } = await loadImage({
@@ -50,12 +52,11 @@ async function structuredData() {
         image = urlIfNotLocal;
       }
     }
-    //@ts-ignore
     jsonLd.image = image;
   }
   return jsonLd;
 }
-const jsonLd = JSON.stringify(await structuredData());
+const jsonLd = await structuredData();
 ---
 
 <Layout>
@@ -63,8 +64,13 @@ const jsonLd = JSON.stringify(await structuredData());
     <TheHtmlHead
       title={entry.data.title}
       description={entry.data.description}
+      ogImageURL={jsonLd.image?.toString()}
     />
-    <script is:inline type="application/ld+json" set:html={jsonLd} />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLd)}
+    />
   </Fragment>
   <article class="mx-auto max-w-[680px]">
     <h1 class="post-title">{entry.data.title}</h1>
