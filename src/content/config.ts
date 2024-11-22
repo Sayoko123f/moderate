@@ -4,6 +4,7 @@ const postSchema = z.object({
   title: z.string(),
   description: z.string().optional(),
   cover: z.string().optional(),
+  category: z.string().optional(),
   tags: z.array(z.string()),
   draft: z.boolean().default(false),
   published: z.date(),

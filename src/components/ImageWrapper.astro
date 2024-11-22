@@ -1,14 +1,16 @@
 ---
 import { Image } from "astro:assets";
 import { loadImage } from "@/utils/load-image";
+import type { AstroBuiltinAttributes } from "astro";
 
 interface Props {
   alt?: string;
   basePath?: string;
   src: string;
+  classList?: AstroBuiltinAttributes["class:list"];
 }
 
-const { src, alt = "", basePath = "/" } = Astro.props;
+const { src, alt = "", basePath = "/", classList } = Astro.props;
 
 const { isLocal, localImage, urlIfNotLocal } = await loadImage({
   src,
@@ -16,6 +18,6 @@ const { isLocal, localImage, urlIfNotLocal } = await loadImage({
 });
 ---
 
-{localImage && <Image src={localImage} alt={alt} />}
+{localImage && <Image src={localImage} class:list={classList} alt={alt} />}
 
-{!isLocal && <img src={urlIfNotLocal} />}
+{!isLocal && <img src={urlIfNotLocal} class:list={classList} alt={alt} />}

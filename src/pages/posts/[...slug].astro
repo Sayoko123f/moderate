@@ -1,12 +1,12 @@
 ---
 import "@/styles/markdown.css";
 import Layout from "@/layouts/Layout.astro";
-import { getPosts } from "@/utils/content";
-import { tagURL, calcPostFilePath } from "@/utils/url";
+import { getPosts, type PostEntry } from "@/utils/content";
+import { tagURL, calcPostFilePath, postURL } from "@/utils/url";
 import TheHtmlHead from "@/layouts/TheHtmlHead.astro";
 import { themeConfig } from "@/theme-config";
+import ImageWrapper from "@/components/ImageWrapper.astro";
 import { loadImage } from "@/utils/load-image";
-import { undefined } from "astro:schema";
 
 export async function getStaticPaths() {
   const postEntries = await getPosts();
@@ -22,7 +22,6 @@ const { Content } = await entry.render();
 const tags = entry.data.tags;
 
 async function structuredData() {
-  let image: URL | string | undefined;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -44,19 +43,25 @@ async function structuredData() {
       basePath: calcPostFilePath(entry),
     });
     if (localImage) {
-      image = new URL(localImage.src, Astro.site);
+      jsonLd.image = new URL(localImage.src, Astro.site);
     } else if (urlIfNotLocal) {
       if (urlIfNotLocal.startsWith("/")) {
-        image = new URL(urlIfNotLocal, Astro.site);
+        jsonLd.image = new URL(urlIfNotLocal, Astro.site);
       } else {
-        image = urlIfNotLocal;
+        jsonLd.image = urlIfNotLocal;
       }
     }
-    jsonLd.image = image;
   }
   return jsonLd;
 }
 const jsonLd = await structuredData();
+
+async function getMorePosts(): Promise<PostEntry[]> {
+  const postEntries = await getPosts();
+  return postEntries.slice(0, 4);
+}
+
+const morePosts = await getMorePosts();
 ---
 
 <Layout>
@@ -115,6 +120,30 @@ const jsonLd = await structuredData();
       <div class="border-b border-footer-neutral pb-10"></div>
       <div class="pt-10">
         <p>更多文章</p>
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          {
+            morePosts.map((post) => (
+              <a class="grid grid-cols-subgrid" href={postURL(post)}>
+                <div class="h-[162px] w-[324px]">
+                  {post.data.cover && (
+                    <ImageWrapper
+                      classList={["object-cover h-[162px] w-[324px]"]}
+                      src={post.data.cover}
+                      basePath={calcPostFilePath(post)}
+                    />
+                  )}
+                </div>
+                <h2 class="post-title line-clamp-2">{post.data.title}</h2>
+                <p class="post-subtitle line-clamp-2">
+                  {post.data.description}
+                </p>
+                <div class="mt-auto">
+                  {post.data.published.toLocaleDateString()}
+                </div>
+              </a>
+            ))
+          }
+        </div>
       </div>
     </div>
   </footer>
