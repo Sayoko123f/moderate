@@ -36,3 +36,4 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
 - [ ] Grid 風格主頁
 - [ ] 分頁器
 - [ ] 撰寫文件
+- [ ] 更新到 Astro 5，使用新的 Content API
