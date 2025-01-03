@@ -6,7 +6,7 @@ export function joinBaseURL(...input: string[]): string {
 }
 
 export function postURL(post: PostEntry): string {
-  return joinBaseURL("posts", post.slug);
+  return joinBaseURL("posts", post.id);
 }
 
 export function tagURL(tag: string): string {

@@ -2,6 +2,7 @@
 import "@/styles/markdown.css";
 import Layout from "@/layouts/Layout.astro";
 import { getPosts, type PostEntry } from "@/utils/content";
+import { render } from "astro:content";
 import { tagURL, calcPostFilePath, postURL } from "@/utils/url";
 import TheHtmlHead from "@/layouts/TheHtmlHead.astro";
 import { themeConfig } from "@/theme-config";
@@ -11,14 +12,14 @@ import { loadImage } from "@/utils/load-image";
 export async function getStaticPaths() {
   const postEntries = await getPosts();
   return postEntries.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { id: entry.id },
     props: { entry },
   }));
 }
 
 const { profile } = themeConfig;
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 const tags = entry.data.tags;
 
 async function structuredData() {
@@ -119,8 +120,8 @@ const morePosts = await getMorePosts();
       <div class="mt-4 text-sm">{profile.bio}</div>
       <div class="border-b border-footer-neutral pb-10"></div>
       <div class="pt-10">
-        <div class="text-2xl mb-12">More</div>
-        <div class="grid gap-4 grid-cols-1 md:grid-cols-2">
+        <div class="mb-12 text-2xl">More</div>
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
           {
             morePosts.map((post) => (
               <a class="grid grid-cols-subgrid" href={postURL(post)}>

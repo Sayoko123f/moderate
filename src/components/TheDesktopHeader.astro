@@ -5,10 +5,15 @@ import DarkModeIcon from "@/assets/icons/DarkMode.astro";
 import LightModeIcon from "@/assets/icons/LightMode.astro";
 
 import { parseFilename } from "ufo";
-const icons = await Astro.glob("@/assets/glob-icons/*.astro");
+const icons = import.meta.glob<{ file: string; default: any }>(
+  "@/assets/glob-icons/*.astro",
+  {
+    eager: true,
+  }
+);
 
 const socialLinks = themeConfig.socialLinks.map((link) => {
-  const iconComponent = icons.find((e) => {
+  const iconComponent = Object.values(icons).find((e) => {
     return parseFilename(e.file, { strict: true }) === link.icon;
   });
   return { ...link, IconComponent: iconComponent?.default };
@@ -46,7 +51,7 @@ const socialLinks = themeConfig.socialLinks.map((link) => {
       style="font-size: 1.5rem;"
     >
       <DarkModeIcon class:list={"hidden"} id="dark-mode-icon" />
-        <LightModeIcon class:list={"hidden"} id="light-mode-icon" />
+      <LightModeIcon class:list={"hidden"} id="light-mode-icon" />
     </div>
     <script src="@/scripts/dark-mode.ts"></script>
   </nav>

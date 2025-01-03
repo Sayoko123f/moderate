@@ -15,7 +15,9 @@ export async function getPosts() {
 
 export async function getAbout() {
   const about = await getEntry("about", "index");
-
+  if (!about) {
+    throw Error('Not found "src/content/about/index.md"');
+  }
   return about;
 }
 

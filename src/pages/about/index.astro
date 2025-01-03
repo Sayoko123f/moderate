@@ -4,9 +4,10 @@ import ClassicHomeLayout from "@/layouts/ClassicHomeLayout.astro";
 import TheHero from "@/layouts/classic-widgets/TheHero.astro";
 import TheNav from "@/layouts/classic-widgets/TheNav.astro";
 import { getAbout } from "@/utils/content";
+import { render } from "astro:content";
 
 const about = await getAbout();
-const { Content } = await about.render();
+const { Content } = await render(about);
 ---
 
 <ClassicHomeLayout>
