@@ -12,7 +12,7 @@ const postSchema = z.object({
   updateAt: z.date().optional(),
 });
 const postCollection = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/posts" }),
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/posts" }),
   schema: postSchema,
 });
 

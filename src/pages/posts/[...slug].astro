@@ -12,7 +12,7 @@ import { loadImage } from "@/utils/load-image";
 export async function getStaticPaths() {
   const postEntries = await getPosts();
   return postEntries.map((entry) => ({
-    params: { id: entry.id },
+    params: { slug: entry.id },
     props: { entry },
   }));
 }

@@ -22,7 +22,7 @@ export async function loadImage({ src, basePath }: LoadImageParams) {
       { import: "default" },
     );
     const srcDir = "..";
-    const imagePath = path.join(srcDir, path.dirname(basePath), src);
+    const imagePath = path.join(srcDir, basePath, src);
     const importPath = path.normalize(imagePath).replaceAll("\\", "/");
     const imgModule = await allImageFiles[importPath]();
     if (!imgModule) {
