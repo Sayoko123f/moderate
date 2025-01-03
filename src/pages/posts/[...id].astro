@@ -12,7 +12,7 @@ import { loadImage } from "@/utils/load-image";
 export async function getStaticPaths() {
   const postEntries = await getPosts();
   return postEntries.map((entry) => ({
-    params: { slug: entry.id },
+    params: { id: entry.id },
     props: { entry },
   }));
 }
@@ -39,6 +39,7 @@ async function structuredData() {
     image: void 0 as URL | string | undefined,
   };
   if (entry.data.cover && Astro.site) {
+    
     const { localImage, urlIfNotLocal } = await loadImage({
       src: entry.data.cover,
       basePath: calcPostFilePath(entry),
