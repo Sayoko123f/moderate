@@ -42,7 +42,7 @@ async function structuredData() {
     
     const { localImage, urlIfNotLocal } = await loadImage({
       src: entry.data.cover,
-      basePath: calcPostFilePath(entry),
+      entryFilePath: calcPostFilePath(entry),
     });
     if (localImage) {
       jsonLd.image = new URL(localImage.src, Astro.site);
@@ -131,7 +131,7 @@ const morePosts = await getMorePosts();
                     <ImageWrapper
                       classList={["object-cover h-[162px] w-[324px]"]}
                       src={post.data.cover}
-                      basePath={calcPostFilePath(post)}
+                      entryFilePath={calcPostFilePath(post)}
                     />
                   )}
                 </div>

@@ -44,7 +44,7 @@ const postFilePath = calcPostFilePath(post);
       <div class="h-[107px] w-[160px]">
         {
           post.data.cover && (
-            <ImageWrapper src={post.data.cover} basePath={postFilePath} />
+            <ImageWrapper src={post.data.cover} entryFilePath={postFilePath} />
           )
         }
       </div>
