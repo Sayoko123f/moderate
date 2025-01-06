@@ -28,6 +28,10 @@
   margin-top: var(--space-5);
 }
 
+.markdown img {
+  cursor: pointer;
+}
+
 .markdown a {
   text-decoration: underline;
 }
