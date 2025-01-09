@@ -5,7 +5,7 @@ interface Props {
   description?: string;
 }
 
-const { local, youtube } = Astro.props;
+const { local, youtube, description = "" } = Astro.props;
 
 if (!local && !youtube) {
   throw new Error("VideoCard require local or youtube props.");
@@ -13,6 +13,6 @@ if (!local && !youtube) {
 ---
 
 <div class="mt-14">
-  <div data-youtube="6TWCEJMP8bM"></div>
-  <div class="text-sm mt-2.5 text-center text-secondary">Johnson 分享的 Steam 遊戲發行知識懶人包</div>
+  {youtube && <div data-youtube={youtube} />}
+  <div class="mt-2.5 text-center text-sm text-secondary">{description}</div>
 </div>
