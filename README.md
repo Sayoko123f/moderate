@@ -23,12 +23,14 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
 - [x] 標籤頁
 - [ ] 頁腳
 - [ ] 文章頁腳相關文章
-- [ ] 暗黑模式支持
+- [x] 暗黑模式支持
+- [ ] 手機板標題列
 - [x] Document Title 設定
 - [x] SEO OpenGraph Tags 設定
 - [x] 結構化資料支持
 - [ ] 站內搜尋
 - [ ] 可選的 giscus 評論功能
+- [ ] 實驗 [Transition API](https://docs.astro.build/en/guides/view-transitions/)
 - [ ] Markdown 自訂短語法組件
 - [ ] RSS 支持
 - [ ] SiteMap 支持
