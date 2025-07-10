@@ -39,7 +39,6 @@ async function structuredData() {
     image: void 0 as URL | string | undefined,
   };
   if (entry.data.cover && Astro.site) {
-    
     const { localImage, urlIfNotLocal } = await loadImage({
       src: entry.data.cover,
       entryFilePath: calcPostFilePath(entry),
@@ -79,7 +78,7 @@ const morePosts = await getMorePosts();
       set:html={JSON.stringify(jsonLd)}
     />
   </Fragment>
-  <article class="mx-auto max-w-[680px]">
+  <article class="mx-auto max-w-[680px] px-6">
     <h1 class="post-title">{entry.data.title}</h1>
     {
       entry.data.description && (
@@ -104,7 +103,7 @@ const morePosts = await getMorePosts();
     }
     <div class="pb-[140px]"></div>
   </article>
-  <footer class="bg-footer-bg pt-[72px]">
+  <footer class="bg-footer-bg pt-[72px] mx-6">
     <div class="mx-auto max-w-[680px]">
       <div class="mb-4 size-[72px] overflow-hidden">
         {
@@ -120,7 +119,7 @@ const morePosts = await getMorePosts();
       <div class="text-2xl">{profile.name}</div>
       <div class="mt-4 text-sm">{profile.bio}</div>
       <div class="border-b border-footer-neutral pb-10"></div>
-      <div class="pt-10">
+      <div class="pb-16 pt-10">
         <div class="mb-12 text-2xl">More</div>
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
           {

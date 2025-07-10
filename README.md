@@ -21,8 +21,8 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
 
 - [x] 關於 About 頁
 - [x] 標籤頁
-- [ ] 頁腳
-- [ ] 文章頁腳相關文章
+- [x] 頁腳
+- [x] 文章頁腳相關文章
 - [x] 暗黑模式支持
 - [ ] 手機板標題列
 - [x] Document Title 設定

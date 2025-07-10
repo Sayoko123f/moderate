@@ -3,8 +3,8 @@ import { themeConfig } from "@/theme-config";
 import LinkDefaultIcon from "@/assets/icons/UilLink.astro";
 import DarkModeIcon from "@/assets/icons/DarkMode.astro";
 import LightModeIcon from "@/assets/icons/LightMode.astro";
-
 import { parseFilename } from "ufo";
+
 const icons = import.meta.glob<{ file: string; default: any }>(
   "@/assets/glob-icons/*.astro",
   {
