@@ -82,9 +82,17 @@ const morePosts = await getMorePosts();
     <h1 class="post-title">{entry.data.title}</h1>
     {
       entry.data.description && (
-        <h2 class="post-subtitle">{entry.data.description}</h2>
+      <h2 class="post-subtitle">{entry.data.description}</h2>
       )
     }
+    <div class="text-sm text-gray-500 mt-2">
+      {entry.data.published.toLocaleDateString()}
+      {
+      entry.data.updateAt && (
+        <span>(最後更新於：{entry.data.updateAt.toLocaleDateString()})</span>
+      )
+      }
+    </div>
     <div class="markdown mb-[68px] max-w-4xl">
       <Content />
     </div>

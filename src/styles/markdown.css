@@ -24,7 +24,13 @@
 .markdown h3 + p,
 .markdown h4 + p,
 .markdown h5 + p,
-.markdown h6 + p {
+.markdown h6 + p,
+.markdown h1 + img,
+.markdown h2 + img,
+.markdown h3 + img,
+.markdown h4 + img,
+.markdown h5 + img,
+.markdown h6 + img {
   margin-top: var(--space-5);
 }
 
