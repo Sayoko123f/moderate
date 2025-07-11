@@ -3,6 +3,7 @@ import "@/styles/global.css";
 import { themeConfig } from "@/theme-config";
 import TheDesktopHeader from "@/layouts/TheDesktopHeader.astro";
 import TheMobileHeader from "@/layouts/TheMobileHeader.astro";
+import {joinBaseURL} from '@/utils/url'
 ---
 
 <!doctype html>
@@ -36,6 +37,41 @@ import TheMobileHeader from "@/layouts/TheMobileHeader.astro";
     <TheMobileHeader />
     <div class="h-appbar"></div>
     <slot />
+    {import.meta.env.PROD && <script is:inline define:vars={{scriptUrl: joinBaseURL('/pagefind/pagefind.js')}}>
+async function loadPagefind() {
+    try {
+        const response = await fetch(scriptUrl, { method: 'HEAD' });
+        if (!response.ok) {
+            throw new Error(`Pagefind script not found: ${response.status}`);
+        }
+
+        const pagefind = await import(scriptUrl);
+
+        await pagefind.options({
+            excerptLength: 20
+        });
+
+        window.pagefind = pagefind;
+
+        document.dispatchEvent(new CustomEvent('pagefindready'));
+        console.log('Pagefind loaded and initialized successfully, event dispatched.');
+    } catch (error) {
+        console.error('Failed to load Pagefind:', error);
+        window.pagefind = {
+            search: () => Promise.resolve({ results: [] }),
+            options: () => Promise.resolve(),
+        };
+        document.dispatchEvent(new CustomEvent('pagefindloaderror'));
+        console.log('Pagefind load error, event dispatched.');
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadPagefind);
+} else {
+    loadPagefind();
+}
+</script>}
     <script src="@/scripts/scroll.ts"></script>
   </body>
 </html>

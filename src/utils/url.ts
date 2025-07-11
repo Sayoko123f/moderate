@@ -1,4 +1,4 @@
-import path from "node:path";
+import path from "node:path/posix";
 import type { PostEntry } from "./content";
 
 export function joinBaseURL(...input: string[]): string {

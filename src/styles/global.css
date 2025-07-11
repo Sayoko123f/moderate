@@ -75,3 +75,46 @@ code {
   padding-left: clamp(24px, -1056px + 100vw, 40px);
   min-height: calc(100vh - var(--appbar-height));
 }
+
+.DocSearch-Modal {
+  border-radius: .5rem;
+  width: 100%;
+  max-width: 47.375rem;
+  min-height: 0;
+  flex-direction: column;
+  margin: 0 auto;
+  display: flex;
+}
+
+.DocSearch-SearchBar {
+  width: 100%;
+  z-index: 1;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: var(--secondary);
+  flex: none;
+  align-items: center;
+  padding: 0 1rem;
+  display: flex;
+  position: relative;
+}
+
+.DocSearch-Form {
+  min-width: calc(var(--spacing) * 0);
+  flex: auto;
+  align-items: center;
+  display: flex;
+}
+
+.DocSearch-Input {
+  appearance: none;
+  height: 3.5rem;
+  color: var(--primary);
+  background: 0 0;
+  flex: auto;
+  min-width: 0;
+  margin-left: 0.75rem;
+  margin-right: 1rem;
+  font-size: 1rem;
+  outline: none;
+}
