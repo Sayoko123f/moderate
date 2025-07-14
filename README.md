@@ -28,7 +28,7 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
 - [x] Document Title 設定
 - [x] SEO OpenGraph Tags 設定
 - [x] 結構化資料支持
-- [ ] 站內搜尋
+- [x] 站內搜尋
 - [ ] 可選的 giscus 評論功能
 - [ ] 實驗 [Transition API](https://docs.astro.build/en/guides/view-transitions/)
 - [ ] Markdown 自訂短語法組件
@@ -38,4 +38,4 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
 - [ ] Grid 風格主頁
 - [ ] 分頁器
 - [ ] 撰寫文件
-- [ ] 更新到 Astro 5，使用新的 Content API
+- [x] 更新到 Astro 5，使用新的 Content API

@@ -41,3 +41,9 @@ const documentTitle = props.title
   name="twitter:description"
   content={props.description ?? themeConfig.siteDescription}
 />
+<link
+    rel="alternate"
+    type="application/rss+xml"
+    title={themeConfig.siteTitle}
+    href={new URL("rss.xml", Astro.site)}
+/>
