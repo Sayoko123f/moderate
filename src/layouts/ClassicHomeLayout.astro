@@ -1,0 +1,17 @@
+---
+import Layout from "./Layout.astro";
+import TheAside from "./classic-widgets/TheAside.astro";
+---
+
+<Layout>
+  <slot name="html-head" slot="html-head" />
+  <div class="mx-auto flex max-w-[1336px] justify-evenly">
+    <main class="w-full max-w-[728px]">
+      <slot name="main-content" />
+    </main>
+    <!-- Desktop Only -->
+    <aside class="home-profile-container">
+      <TheAside />
+    </aside>
+  </div>
+</Layout>

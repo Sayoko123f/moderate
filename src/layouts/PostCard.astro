@@ -1,0 +1,54 @@
+---
+import type { PostEntry } from "@/utils/content";
+import { postURL, calcPostFilePath } from "@/utils/url";
+import { themeConfig } from "@/theme-config";
+import ImageWrapper from "@/components/ImageWrapper.astro";
+
+interface Props {
+  post: PostEntry;
+}
+
+const { post } = Astro.props;
+const { profile } = themeConfig;
+const postFilePath = calcPostFilePath(post);
+---
+
+<article class="mx-6 mt-8">
+  <div class="mb-4 flex items-center text-xs leading-5">
+    {
+      profile.avatar && (
+        <img
+          class="mr-2 size-5 max-h-full rounded-full object-contain"
+          src={profile.avatar.src}
+          alt={profile.name}
+        />
+      )
+    }
+    <span>高橋啟介 in THAT GAME DESIGNER - 遊戲設計師</span>
+  </div>
+  <div class="flex">
+    <div class="grow">
+      <a class="block" href={postURL(post)}>
+        <h2 class="text-2xl font-bold text-primary">{post.data.title}</h2>
+        <h3 class="mt-2 max-h-10 min-h-4 text-secondary">
+          {post.data.description}
+        </h3>
+      </a>
+      <div class="mt-2.5 flex h-12 items-center text-secondary">
+        <div class="text-sm">
+          {post.data.published.toLocaleDateString()}
+        </div>
+      </div>
+    </div>
+    <div class="ml-[56px] shrink-0">
+      <div class="h-[107px] w-[160px]">
+        {
+          post.data.cover && (
+            <ImageWrapper classList="max-h-full object-contain" src={post.data.cover} entryFilePath={postFilePath} />
+          )
+        }
+      </div>
+    </div>
+  </div>
+  <div class="mt-5 border-b border-neutral"></div>
+</article>

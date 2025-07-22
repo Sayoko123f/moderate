@@ -1,0 +1,161 @@
+---
+import "@/styles/markdown.css";
+import Layout from "@/layouts/Layout.astro";
+import { getPosts, type PostEntry } from "@/utils/content";
+import { render } from "astro:content";
+import { tagURL, calcPostFilePath, postURL } from "@/utils/url";
+import TheHtmlHead from "@/layouts/TheHtmlHead.astro";
+import { themeConfig } from "@/theme-config";
+import ImageWrapper from "@/components/ImageWrapper.astro";
+import { loadImage } from "@/utils/load-image";
+
+export async function getStaticPaths() {
+  const postEntries = await getPosts();
+  return postEntries.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+const { profile } = themeConfig;
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const tags = entry.data.tags;
+
+async function structuredData() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: entry.data.title,
+    description: entry.data.description || entry.data.title,
+    keywords: entry.data.tags,
+    author: {
+      "@type": "Person",
+      name: themeConfig.profile.name,
+      url: Astro.site,
+    },
+    datePublished: entry.data.published,
+    inLanguage: themeConfig.lang?.replace("_", "-"),
+    image: void 0 as URL | string | undefined,
+  };
+  if (entry.data.cover && Astro.site) {
+    const { localImage, urlIfNotLocal } = await loadImage({
+      src: entry.data.cover,
+      entryFilePath: calcPostFilePath(entry),
+    });
+    if (localImage) {
+      jsonLd.image = new URL(localImage.src, Astro.site);
+    } else if (urlIfNotLocal) {
+      if (urlIfNotLocal.startsWith("/")) {
+        jsonLd.image = new URL(urlIfNotLocal, Astro.site);
+      } else {
+        jsonLd.image = urlIfNotLocal;
+      }
+    }
+  }
+  return jsonLd;
+}
+const jsonLd = await structuredData();
+
+async function getMorePosts(): Promise<PostEntry[]> {
+  const postEntries = await getPosts();
+  return postEntries.slice(0, 4);
+}
+
+const morePosts = await getMorePosts();
+---
+
+<Layout>
+  <Fragment slot="html-head">
+    <TheHtmlHead
+      title={entry.data.title}
+      description={entry.data.description}
+      ogImageURL={jsonLd.image?.toString()}
+    />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLd)}
+    />
+  </Fragment>
+  <article class="mx-auto max-w-[680px] px-6" data-pagefind-body>
+    <h1 class="post-title">{entry.data.title}</h1>
+    {
+      entry.data.description && (
+      <h2 class="post-subtitle">{entry.data.description}</h2>
+      )
+    }
+    <div class="text-sm text-gray-500 mt-2">
+      {entry.data.published.toLocaleDateString()}
+      {
+      entry.data.updateAt && (
+        <span>(最後更新於：{entry.data.updateAt.toLocaleDateString()})</span>
+      )
+      }
+    </div>
+    <div class="markdown mb-[68px] max-w-4xl">
+      <Content />
+    </div>
+    {
+      tags.length && (
+        <div class="flex flex-wrap gap-x-2 gap-y-5">
+          {tags.map((tag) => (
+            <a href={tagURL(tag)}>
+              <span class="rounded-3xl bg-neutral px-4 py-2 text-sm">
+                {tag}
+              </span>
+            </a>
+          ))}
+        </div>
+      )
+    }
+    <div class="pb-[140px]"></div>
+  </article>
+  <footer class="bg-footer-bg pt-[72px] mx-6">
+    <div class="mx-auto max-w-[680px]">
+      <div class="mb-4 size-[72px] overflow-hidden">
+        {
+          profile.avatar && (
+            <img
+              class="max-h-full rounded-full object-contain"
+              src={profile.avatar.src}
+              alt={profile.name}
+            />
+          )
+        }
+      </div>
+      <div class="text-2xl">{profile.name}</div>
+      <div class="mt-4 text-sm">{profile.bio}</div>
+      <div class="border-b border-footer-neutral pb-10"></div>
+      <div class="pb-16 pt-10">
+        <div class="mb-12 text-2xl">More</div>
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {
+            morePosts.map((post) => (
+              <a class="grid grid-cols-subgrid" href={postURL(post)}>
+                <div class="h-[162px] w-[324px]">
+                  {post.data.cover && (
+                    <ImageWrapper
+                      classList={["object-cover h-[162px] w-[324px]"]}
+                      src={post.data.cover}
+                      entryFilePath={calcPostFilePath(post)}
+                    />
+                  )}
+                </div>
+                <h2 class="post-title line-clamp-2">{post.data.title}</h2>
+                <p class="post-subtitle line-clamp-2">
+                  {post.data.description}
+                </p>
+                <div class="mt-auto">
+                  {post.data.published.toLocaleDateString()}
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="@/scripts/pswp.ts"></script>
+  <script src="@/scripts/youtube-loader.ts"></script>
+</Layout>

@@ -1,0 +1,22 @@
+---
+import "@/styles/markdown.css";
+import ClassicHomeLayout from "@/layouts/ClassicHomeLayout.astro";
+import TheHero from "@/layouts/classic-widgets/TheHero.astro";
+import TheNav from "@/layouts/classic-widgets/TheNav.astro";
+import { getAbout } from "@/utils/content";
+import { render } from "astro:content";
+
+const about = await getAbout();
+const { Content } = await render(about);
+---
+
+<ClassicHomeLayout>
+  <Fragment slot="main-content">
+    <TheHero />
+    <TheNav isAbout={true} isHome={false} />
+    <div class="markdown mx-6 mb-[68px] max-w-4xl">
+      <Content />
+    </div>
+    <div class="pb-36"></div>
+  </Fragment>
+</ClassicHomeLayout>

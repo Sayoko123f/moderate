@@ -1,0 +1,20 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  img: ImageMetadata;
+  alt?: string;
+}
+
+const { img, alt = "" } = Astro.props;
+---
+
+<figure class="mt-14">
+  <Image class:list={["mx-auto", "cursor-pointer"]} src={img} alt={alt} />
+  {
+    alt && (
+      <figcaption class="text-sm mt-2.5 text-center text-secondary">{alt}</figcaption>
+    )
+  }
+</figure>

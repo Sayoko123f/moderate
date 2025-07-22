@@ -1,0 +1,32 @@
+---
+import {
+  searchPopoverId,
+  searchKeywordId,
+  docSearchResultId,
+} from "@/constant";
+import MaterialSymbolsSearchIcon from "@/assets/icons/MaterialSymbolsSearch.astro";
+---
+
+<div
+  id={searchPopoverId}
+  popover
+  class="overflow-hidden rounded-lg w-full max-w-2xl bg-stone-50 dark:bg-gray-800"
+>
+  <div class="DocSearch-Modal">
+    <search class="DocSearch-SearchBar">
+      <div class="DocSearch-Form">
+        <MaterialSymbolsSearchIcon class="text-secondary"/>
+        <input
+          id={searchKeywordId}
+          type="text"
+          class="DocSearch-Input"
+          placeholder="站內搜尋"
+        />
+      </div>
+    </search>
+    <div id={docSearchResultId} class="h-[336px] overflow-y-auto">
+
+    </div>
+    <script src="@/scripts/search.ts"></script>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+---
+import ClassicHomeLayout from "@/layouts/ClassicHomeLayout.astro";
+import TheHero from "@/layouts/classic-widgets/TheHero.astro";
+import TheNav from "@/layouts/classic-widgets/TheNav.astro";
+import PostList from "@/layouts/PostList.astro";
+import { getPosts, type PostEntry } from "@/utils/content";
+
+export async function getStaticPaths() {
+  const postEntries = await getPosts();
+
+  const tags = new Map<string, Set<PostEntry>>();
+
+  for (const post of postEntries) {
+    for (const tag of post.data.tags) {
+      if (!tags.has(tag)) {
+        tags.set(tag, new Set());
+      }
+      tags.get(tag)?.add(post);
+    }
+  }
+
+  return [...tags.entries()].map(([tag, posts]) => {
+    return {
+      params: { slug: tag },
+      props: { posts },
+    };
+  });
+}
+
+const { slug } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<ClassicHomeLayout>
+  <Fragment slot="main-content">
+    <TheHero heading={slug} />
+    <TheNav isAbout={false} isHome={true} />
+    <PostList posts={Array.from(posts)} />
+  </Fragment>
+</ClassicHomeLayout>

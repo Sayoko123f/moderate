@@ -1,0 +1,20 @@
+---
+import { themeConfig } from "@/theme-config";
+
+interface Props {
+  heading?: string;
+}
+
+const { profile } = themeConfig;
+
+const { heading = profile.name } = Astro.props;
+---
+
+<div
+  class="h-[150px]"
+  style="background-image: linear-gradient(to bottom, #4a96b6ff, transparent);"
+>
+</div>
+<div class="mx-6 mb-10 mt-[52px]">
+  <h2 class="line-clamp-1 max-h-[52px] text-[42px]">{heading}</h2>
+</div>

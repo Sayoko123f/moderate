@@ -1,0 +1,49 @@
+---
+import { themeConfig } from "@/theme-config";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogType?: "website" | "article";
+  ogImageURL?: string;
+}
+
+const props = Astro.props;
+
+const documentTitle = props.title
+  ? `${props.title}${themeConfig.siteTitleDelimiter ?? " | "}${themeConfig.siteTitle}`
+  : themeConfig.siteTitle;
+---
+
+<title>{documentTitle}</title>
+<meta name="author" content={themeConfig.profile.name} />
+<meta
+  name="description"
+  content={props.description ?? themeConfig.siteDescription}
+/>
+
+<meta property="og:site_name" content={themeConfig.siteTitle} />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={documentTitle} />
+<meta
+  property="og:description"
+  content={props.description ?? themeConfig.siteDescription}
+/>
+{props.ogImageURL && <meta property="og:image" content={props.ogImageURL} />}
+<meta property="og:type" content={props.ogType ?? "website"} />
+<meta
+  name="twitter:card"
+  content={props.ogImageURL ? "summary_large_image" : "summary"}
+/>
+<meta property="twitter:url" content={Astro.url} />
+<meta name="twitter:title" content={documentTitle} />
+<meta
+  name="twitter:description"
+  content={props.description ?? themeConfig.siteDescription}
+/>
+<link
+    rel="alternate"
+    type="application/rss+xml"
+    title={themeConfig.siteTitle}
+    href={new URL("rss.xml", Astro.site)}
+/>

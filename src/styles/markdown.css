@@ -1,0 +1,136 @@
+.markdown {
+  font-size: 20px;
+  color: var(--primary);
+  --space-1: 2.14em;
+  --space-2: 1.95em;
+  --space-3: 1.72em;
+  --space-4: 1.14em;
+  --space-5: 0.94em;
+  --line-height: 32px;
+}
+
+.markdown p {
+  letter-spacing: -0.003em;
+  line-height: var(--line-height);
+  margin-top: var(--space-1);
+  margin-bottom: -0.46em;
+  /* font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif; */
+  font-style: normal;
+  word-break: break-word;
+}
+
+.markdown h1 + p,
+.markdown h2 + p,
+.markdown h3 + p,
+.markdown h4 + p,
+.markdown h5 + p,
+.markdown h6 + p,
+.markdown h1 + img,
+.markdown h2 + img,
+.markdown h3 + img,
+.markdown h4 + img,
+.markdown h5 + img,
+.markdown h6 + img {
+  margin-top: var(--space-5);
+}
+
+.markdown img {
+  cursor: pointer;
+}
+
+.markdown a {
+  text-decoration: underline;
+}
+
+.markdown blockquote {
+  color: var(--secondary);
+  font-size: 28px;
+  --line-height: 40px;
+  margin-left: 30px;
+}
+
+.markdown ul {
+  list-style: disc;
+}
+
+.markdown ol {
+  list-style: decimal;
+}
+
+.markdown ul,
+.markdown ol {
+  padding-left: 30px;
+  margin-top: var(--space-1);
+}
+
+.markdown li {
+  margin-top: var(--space-4);
+  margin-bottom: -0.46em;
+  letter-spacing: -0.003em;
+  line-height: 32px;
+}
+
+.markdown li > p {
+  margin-top: 0;
+}
+
+.markdown h1,
+.markdown h2 {
+  letter-spacing: -0.016em;
+  line-height: 30px;
+  margin-top: var(--space-2);
+  font-size: 24px;
+  margin-bottom: -0.28em;
+  font-weight: 600;
+}
+
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  letter-spacing: 0;
+  line-height: 24px;
+  margin-top: var(--space-3);
+  font-size: 20px;
+  margin-bottom: -0.31em;
+  font-weight: 600;
+}
+
+.markdown pre {
+  margin-top: 56px;
+  padding: 20px;
+}
+
+.markdown hr {
+  display: block;
+  margin-top: 32px;
+  margin-bottom: 10px;
+  padding-top: 24px;
+  padding-bottom: 10px;
+  border: 0;
+  color: var(--primary);
+}
+
+.markdown hr::before {
+  content: "";
+  display: block;
+  width: 0.2em;
+  height: 0.2em;
+  border-radius: 50%;
+  background-color: currentColor;
+  margin: auto;
+  transform: translateY(-15px);
+  box-shadow:
+    1.5em 0,
+    -1.5em 0;
+}
+
+:root.dark .markdown p,
+:root.dark .markdown li {
+  color: var(--secondary);
+}
+
+:root.dark .markdown blockquote p,
+:root.dark .markdown strong {
+  color: var(--primary);
+}
