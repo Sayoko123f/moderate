@@ -1,0 +1,18 @@
+{
+  "Markdown frontmatter": {
+    "prefix": "markdown_frontmatter",
+    "scope": "markdown,md,mdx",
+    "body": [
+      "---",
+      "title: ${1:Required}",
+      "published: Required",
+      "tags: []",
+      "description: Optional",
+      "category: Optional",
+      "draft: false",
+      "---",
+      "",
+    ],
+    "description": "Markdown frontmatter",
+  },
+}
