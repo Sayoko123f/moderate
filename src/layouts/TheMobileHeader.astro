@@ -1,12 +1,91 @@
 ---
+import BaselineMenuIcon from "@/assets/icons/BaselineMenu.astro";
+import { themeConfig } from "@/theme-config";
+import LinkDefaultIcon from "@/assets/icons/UilLink.astro";
+import { parseFilename } from "ufo";
 
+const icons = import.meta.glob<{ file: string; default: any }>(
+  "@/assets/glob-icons/*.astro",
+  {
+    eager: true,
+  }
+);
+
+const socialLinks = themeConfig.socialLinks.map((link) => {
+  const iconComponent = Object.values(icons).find((e) => {
+    return parseFilename(e.file, { strict: true }) === link.icon;
+  });
+  return { ...link, IconComponent: iconComponent?.default };
+});
 ---
 
 <header
   class="fixed left-0 right-0 top-0 z-30 flex h-appbar items-center justify-between border-b border-neutral bg-primary-bg px-6 transition-transform md:hidden"
   style="transform: translateY(var(--appbar-transform-y));"
 >
-  <nav class="">
+  <nav class="text-lg font-bold">
     <a href="/">Home</a>
   </nav>
+  <button
+    id="mobileMenuOpenButton"
+    class="flex size-8 items-center justify-center text-secondary hover:text-primary"
+    aria-label="開啟選單"
+  >
+    <BaselineMenuIcon class="size-8" />
+  </button>
 </header>
+
+<div
+  id="mobileMenu"
+  class="animate-fade-in fixed inset-0 z-50 hidden flex-col bg-primary-bg backdrop-blur-sm"
+>
+  <div
+    class="flex h-appbar items-center justify-between border-b border-neutral px-6"
+  >
+    <a href="/" class="text-lg font-bold">Home</a>
+    <button
+      id="mobileMenuCloseButton"
+      class="flex size-8 items-center justify-center text-secondary hover:text-primary"
+      aria-label="關閉選單"
+    >
+      <span style="font-size:2rem;">x</span>
+    </button>
+  </div>
+  <nav class="flex flex-1 flex-col gap-6 overflow-y-auto p-8 text-lg">
+    <div class="flex flex-col gap-4">
+      {
+        socialLinks.map((link) => (
+          <a class="flex items-center gap-x-2 hover:underline" href={link.url}>
+            {link.icon && (
+              <span class="size-6" style="font-size: 1.5rem">
+                {link.IconComponent ? (
+                  <link.IconComponent />
+                ) : (
+                  <LinkDefaultIcon />
+                )}
+              </span>
+            )}
+            {link.text && link.text}
+          </a>
+        ))
+      }
+    </div>
+  </nav>
+</div>
+
+<script>
+  function setMobileMenuOpen() {
+    document.getElementById("mobileMenu")!.classList.add("flex");
+    document.getElementById("mobileMenu")!.classList.remove("hidden");
+  }
+  function setMobileMenuClose() {
+    document.getElementById("mobileMenu")!.classList.remove("flex");
+    document.getElementById("mobileMenu")!.classList.add("hidden");
+  }
+  document
+    .getElementById("mobileMenuOpenButton")!
+    .addEventListener("pointerdown", setMobileMenuOpen);
+  document
+    .getElementById("mobileMenuCloseButton")!
+    .addEventListener("pointerdown", setMobileMenuClose);
+</script>
