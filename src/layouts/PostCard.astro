@@ -1,7 +1,6 @@
 ---
 import type { PostEntry } from "@/utils/content";
 import { postURL, calcPostFilePath } from "@/utils/url";
-import { themeConfig } from "@/theme-config";
 import ImageWrapper from "@/components/ImageWrapper.astro";
 
 interface Props {
@@ -9,23 +8,10 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { profile } = themeConfig;
 const postFilePath = calcPostFilePath(post);
 ---
 
 <article class="mx-6 mt-8">
-  <div class="mb-4 flex items-center text-xs leading-5">
-    {
-      profile.avatar && (
-        <img
-          class="mr-2 size-5 max-h-full rounded-full object-contain"
-          src={profile.avatar.src}
-          alt={profile.name}
-        />
-      )
-    }
-    <span>高橋啟介 in THAT GAME DESIGNER - 遊戲設計師</span>
-  </div>
   <div class="flex">
     <div class="grow">
       <a class="block" href={postURL(post)}>
