@@ -5,11 +5,13 @@ import tailwind from "@astrojs/tailwind";
 
 import mdx from "@astrojs/mdx";
 
+import sitemap from "@astrojs/sitemap";
+
 // https://astro.build/config
 // Run `npx astro sync` after edit this file.
 export default defineConfig({
   site: "https://www.my-site.dev",
   base: "/",
   trailingSlash: "never",
-  integrations: [tailwind(), mdx()],
+  integrations: [tailwind(), mdx(), sitemap()],
 });
