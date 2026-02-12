@@ -12,7 +12,7 @@ const icons = import.meta.glob<{ file: string; default: any }>(
   "@/assets/glob-icons/*.astro",
   {
     eager: true,
-  }
+  },
 );
 
 const socialLinks = themeConfig.socialLinks.map((link) => {
@@ -28,12 +28,12 @@ const socialLinks = themeConfig.socialLinks.map((link) => {
   style="transform: translateY(var(--appbar-transform-y));"
 >
   <nav class="">
-    <a href="/">Home</a>
+    <a href="/">{themeConfig.headerTitle ?? "Home"}</a>
   </nav>
   <nav class="flex">
     <div class="flex gap-x-4">
       <button
-      id="search-open-button"
+        id="search-open-button"
         popovertarget={searchPopoverId}
         class="size-6"
         aria-label="搜尋"

@@ -13,6 +13,7 @@ export interface ThemeConfig {
   lang: HTMLAttributes<"html">["lang"];
   siteTitle: string;
   siteDescription: string;
+  headerTitle?: string;
   siteTitleDelimiter?: string;
   profile: {
     name: string;

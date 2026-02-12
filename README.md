@@ -5,7 +5,7 @@
 - [x] 頁腳
 - [x] 文章頁腳相關文章
 - [x] 暗黑模式支持
-- [ ] 手機板標題列
+- [x] 手機板標題列
 - [x] Document Title 設定
 - [x] SEO OpenGraph Tags 設定
 - [x] 結構化資料支持
@@ -20,3 +20,9 @@
 - [ ] 分頁器
 - [ ] 撰寫文件
 - [x] 更新到 Astro 5，使用新的 Content API
+
+src/content/about/index.md About 頁面的內容在這
+
+src/content/posts 主要文章內容放在這
+
+src/assets/avatar.jpg 頭像

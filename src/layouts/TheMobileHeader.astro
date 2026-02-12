@@ -24,7 +24,7 @@ const socialLinks = themeConfig.socialLinks.map((link) => {
   style="transform: translateY(var(--appbar-transform-y));"
 >
   <nav class="text-lg font-bold">
-    <a href="/">Home</a>
+    <a href="/">{themeConfig.headerTitle ?? "Home"}</a>
   </nav>
   <button
     id="mobileMenuOpenButton"
@@ -42,7 +42,7 @@ const socialLinks = themeConfig.socialLinks.map((link) => {
   <div
     class="flex h-appbar items-center justify-between border-b border-neutral px-6"
   >
-    <a href="/" class="text-lg font-bold">Home</a>
+    <a href="/" class="text-lg font-bold">{themeConfig.headerTitle ?? "Home"}</a>
     <button
       id="mobileMenuCloseButton"
       class="flex size-8 items-center justify-center text-secondary hover:text-primary"
