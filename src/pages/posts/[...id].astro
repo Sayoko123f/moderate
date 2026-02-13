@@ -80,19 +80,22 @@ const morePosts = await getMorePosts();
   </Fragment>
   <article class="mx-auto max-w-[680px] px-6" data-pagefind-body>
     <h1 class="post-title">{entry.data.title}</h1>
-    {
-      entry.data.description && (
-      <h2 class="post-subtitle">{entry.data.description}</h2>
-      )
-    }
-    <div class="text-sm text-gray-500 mt-2">
+    <time
+      class="mt-4 block text-sm text-gray-500"
+      datetime={entry.data.published.toISOString()}
+    >
       {entry.data.published.toLocaleDateString()}
       {
-      entry.data.updateAt && (
-        <span>(最後更新於：{entry.data.updateAt.toLocaleDateString()})</span>
-      )
+        entry.data.updateAt && (
+          <span>(最後更新於：{entry.data.updateAt.toLocaleDateString()})</span>
+        )
       }
-    </div>
+    </time>
+    {
+      entry.data.description && (
+        <h2 class="post-subtitle">{entry.data.description}</h2>
+      )
+    }
     <div class="markdown mb-[68px] max-w-4xl">
       <Content />
     </div>
@@ -111,7 +114,7 @@ const morePosts = await getMorePosts();
     }
     <div class="pb-[140px]"></div>
   </article>
-  <footer class="bg-footer-bg pt-[72px] mx-6">
+  <footer class="mx-6 bg-footer-bg pt-[72px]">
     <div class="mx-auto max-w-[680px]">
       <div class="mb-4 size-[72px] overflow-hidden">
         {
