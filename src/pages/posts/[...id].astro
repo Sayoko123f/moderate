@@ -84,10 +84,13 @@ const morePosts = await getMorePosts();
       class="mt-4 block text-sm text-gray-500"
       datetime={entry.data.published.toISOString()}
     >
-      {entry.data.published.toLocaleDateString()}
+      {entry.data.published.toLocaleDateString(themeConfig.lang ?? "en")}
       {
         entry.data.updateAt && (
-          <span>(最後更新於：{entry.data.updateAt.toLocaleDateString()})</span>
+          <span>
+            (最後更新於：
+            {entry.data.updateAt.toLocaleDateString(themeConfig.lang ?? "en")})
+          </span>
         )
       }
     </time>
@@ -150,7 +153,9 @@ const morePosts = await getMorePosts();
                   {post.data.description}
                 </p>
                 <div class="mt-auto">
-                  {post.data.published.toLocaleDateString()}
+                  {post.data.published.toLocaleDateString(
+                    themeConfig.lang ?? "en",
+                  )}
                 </div>
               </a>
             ))
