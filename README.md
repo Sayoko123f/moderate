@@ -14,7 +14,7 @@
 - [ ] 實驗 [Transition API](https://docs.astro.build/en/guides/view-transitions/)
 - [ ] Markdown 自訂短語法組件
 - [x] RSS 支持
-- [ ] SiteMap 支持
+- [x] SiteMap 支持
 - [x] 研究圖片動態導入
 - [ ] Grid 風格主頁
 - [ ] 分頁器
